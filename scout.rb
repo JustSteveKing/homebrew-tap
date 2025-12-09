@@ -19,9 +19,10 @@ class Scout < Formula
 
   test do
     # Basic smoke test: ensure binary runs and prints help or version.
+    # This works cross-platform (macOS, Windows, Linux) with Homebrew's built-in handling
     output = shell_output("#{bin}/scout --help", 0)
     assert_match "Usage", output if output.include?("Usage")
-    # fallback: check that running --version or -v exits 0
-    system "#{bin}/scout", "--version"
+    # Fallback: verify the binary exits successfully with version command
+    system bin/"scout", "--version"
   end
 end
